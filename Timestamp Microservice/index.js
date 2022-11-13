@@ -14,8 +14,21 @@ app.get("/", (req, res) => {
 app.post('/api', (req, res) => {
     const date = req.body.date;
     const msDate = req.body.msDate;
+    let unixTime;
+    let utcTime;
 
-    res.json(req.body)
+    if (date) {
+        unixTime = new Date(date).getTime();
+        utcTime = new Date(date).toUTCString();
+    } else if (msDate) {
+        unixTime = Number(msDate),
+        utcTime = new Date(Number(msDate)).toUTCString();
+    } else {
+        unixTime = new Date().getTime();
+        utcTime = new Date().toUTCString();
+    }
+
+    res.json({unix: unixTime, utc: utcTime})
 })
 
 app.get("/api/:date", (req, res) => {
@@ -29,7 +42,7 @@ app.get("/api/:date", (req, res) => {
     } else if (isNaN(req.params.date) === false) {
         console.log(2)
         utcTime = new Date(Number(req.params.date)).toUTCString()
-        unixTime = req.params.date
+        unixTime = Number(req.params.date)
     } else {
         console.log(3)
         res.json({error: "Invalid Date"})
