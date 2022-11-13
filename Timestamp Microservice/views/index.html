@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="/style.css">
+</head>
+<body>
+    <h1>Timestamp Microservices</h1>
+
+    <div>
+        <h2>Check using fast links</h2>
+        <a href="/api/2015-12-25"><span>Check Date in normal format:</span> /api/2015-12-25</a>
+        <a href="/api/1451001600000"><span>Check Date in milliseconds format:</span> /api/1451001600000</a>
+    </div>
+
+    <form method="post" action="/api">
+        <h2>Check using custom data</h2>
+
+        <div>
+            <label>Choose a date</label>
+            <input type="date" name="date"/>
+        </div>
+        <div>
+            <label>Or Enter date in milliseconds</label>
+            <input type="number" name="msDate"/>
+        </div>
+
+        <button>Check Unix and Utc Versions</button>
+    </form>
+</body>
+</html>
